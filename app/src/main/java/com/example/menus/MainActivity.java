@@ -3,11 +3,14 @@ package com.example.menus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.mnuAdd:
                 Toast.makeText(this, "Selected Add", Toast.LENGTH_SHORT).show();
+                callMyDialog();
                 break;
             case R.id.mnuAbout:
                 Toast.makeText(this, "Selected About", Toast.LENGTH_SHORT).show();
@@ -48,5 +52,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void callMyDialog() {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("This my alert dialog box")
+
+                .setMessage("Are you sure you want add an item")
+
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codes to execute when you click yes
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Code to execute when you click No
+                    }
+                })
+                .show();
+
     }
 }
