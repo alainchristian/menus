@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.mnuAdd:
                 Toast.makeText(this, "Selected Add", Toast.LENGTH_SHORT).show();
-                callMyDialog();
+                //callMyDialog();
+                callCustomDialog();
                 break;
             case R.id.mnuAbout:
                 Toast.makeText(this, "Selected About", Toast.LENGTH_SHORT).show();
@@ -52,6 +56,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void callCustomDialog() {
+        MaterialAlertDialogBuilder myDialog = new MaterialAlertDialogBuilder(this);
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.custom_dialog,null);
+        TextInputEditText etName = view.findViewById(R.id.etNames);
+        TextInputEditText etEmail = view.findViewById(R.id.etEmail);
+        TextInputEditText etPhone =view.findViewById(R.id.etPhone);
+        myDialog.setView(view);
+        myDialog.setTitle("Data entry");
+        myDialog.setMessage("Please make sure that information is correcct and valid");
+        myDialog.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this, "Hi", Toast.LENGTH_SHORT).show();
+            }
+        });
+        myDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        myDialog.setCancelable(false);
+        myDialog.show();
+
     }
 
     private void callMyDialog() {
@@ -75,4 +106,5 @@ public class MainActivity extends AppCompatActivity {
                 .show();
 
     }
+
 }
