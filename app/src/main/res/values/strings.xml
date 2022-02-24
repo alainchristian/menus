@@ -6,4 +6,7 @@
     <string name="contact_us">Contact Us</string>
     <string name="location">Location</string>
     <string name="more">More</string>
+    <string name="names">Names</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
 </resources>
